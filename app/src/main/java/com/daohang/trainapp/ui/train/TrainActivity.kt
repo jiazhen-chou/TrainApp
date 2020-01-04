@@ -968,29 +968,6 @@ class TrainActivity : BaseActivity() {
         } else {
             toast("相机开启失败，请退出重试")
         }
-
-//        val previewConfig = PreviewConfig.Builder().apply {
-//            setTargetResolution(Size(320, 320))
-//        }.build()
-//
-//        val preview = Preview(previewConfig)
-//
-//        preview.setOnPreviewOutputUpdateListener {
-//            val parent = cameraView.parent as ViewGroup
-//            parent.removeView(cameraView)
-//            parent.addView(cameraView, 0)
-//
-//            cameraView.surfaceTexture = it.surfaceTexture
-//        }
-//
-//        val imageCaptureConfig = ImageCaptureConfig.Builder().apply {
-//            setCaptureMode(ImageCapture.CaptureMode.MIN_LATENCY)
-//            setTargetResolution(Size(160, 160))
-//        }.build()
-//
-//        imageCapture = ImageCapture(imageCaptureConfig)
-//
-//        CameraX.bindToLifecycle(this, preview, imageCapture)
     }
 
     /**
@@ -1030,51 +1007,6 @@ class TrainActivity : BaseActivity() {
             }
             viewModel.searchFace(str.replaceBlank(), group_id, type, numberNeed)
         }
-//        imageCapture.takePicture(
-//            file,
-//            viewModel.executor,
-//            object : ImageCapture.OnImageSavedListener {
-//                override fun onImageSaved(file: File) {
-//                    Log.d(TAG, "文件长度：${file.length() / 1024}KB")
-//                    Log.d(TAG, "拍照结束: ${currentTimeWithSeconds()}")
-//                    val str = Base64.encodeToString(
-//                        compressImage(file, null, false),
-//                        Base64.DEFAULT
-//                    )
-//                    Log.d(TAG, "加密串大小: ${str.length / 1024}KB")
-//                    Log.d(TAG, "BASE64加密结束: ${currentTimeWithSeconds()}")
-//
-//                    val group_id = groupId
-//                    var type = 1
-//                    val numberNeed = when (validationType) {
-//                        VALIDATE_BOTH -> true
-//                        else -> false
-//                    }
-//                    when (viewModel.loginState.value) {
-//                        LoginState.STUDENT_LOGIN,
-//                        LoginState.STUDENT_LOGOUT -> {
-////                            group_id += "_1"
-//                            type = 1
-//                        }
-//                        LoginState.COACH_LOGIN,
-//                        LoginState.COACH_LOGOUT -> {
-////                            group_id += "_2"
-//                            type = 2
-//                        }
-//                    }
-////                    viewModel.matchFace(str.replaceBlank(), group_id)
-//                    viewModel.searchFace(str.replaceBlank(), group_id, type, numberNeed)
-//                }
-//
-//                override fun onError(
-//                    imageCaptureError: ImageCapture.ImageCaptureError,
-//                    message: String,
-//                    cause: Throwable?
-//                ) {
-//                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-//                }
-//
-//            })
     }
 
     /**
@@ -1143,78 +1075,7 @@ class TrainActivity : BaseActivity() {
                 )
             }
         }
-
-//        imageCapture.takePicture(file, viewModel.executor,
-//            object : ImageCapture.OnImageSavedListener {
-//                override fun onImageSaved(file: File) {
-//                    Log.d(TAG, "照片长度：${file.length()}")
-//                    val compressedImage =
-//                        compressImage(file, getPrintInfo(eventType, coachModel, studentModel))
-//                    Log.d(TAG, "压缩后长度：${compressedImage.size}")
-//                    var totalPackages = compressedImage.size / PHOTO_PACKAGE_SIZE
-//                    if (compressedImage.size % PHOTO_PACKAGE_SIZE != 0)
-//                        totalPackages++
-//
-//                    PictureInitModel(
-//                        eventType = eventType,
-//                        pictureId = photoId.toByteArray(),
-//                        studentNumber = id,
-//                        totalPackages = totalPackages.toShort(),
-//                        imageSize = file.length().toInt(),
-//                        classId = viewModel.classId,
-//                        gnnsData = recordGnnsAddition()
-//                    ).let {
-//                        Log.d(TAG, "拍照结束，存入数据库")
-//                        DaoHelper.Photo.insert(it)
-//                        insertMessage(
-//                            MessageModel(
-//                                sequenceNumber,
-//                                ProtocolSend.SEND_PENETRATE_MESSAGE,
-//                                initPicture(it)
-//                            )
-//                        )
-//                        viewModel.insertPhotoPackages(
-//                            compressedImage,
-//                            photoId.toByteArray()
-//                        )
-//                    }
-//                }
-//
-//                override fun onError(
-//                    imageCaptureError: ImageCapture.ImageCaptureError,
-//                    message: String,
-//                    cause: Throwable?
-//                ) {
-//                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-//                }
-//
-//            })
     }
-
-    /**
-     * 处理屏幕旋转，暂时无用
-     */
-//    @Deprecated("屏幕无法旋转，暂无用")
-//    private fun updateTransform() {
-//
-//        val matrix = Matrix()
-//
-//        val centerX = cameraView.width / 2f
-//        val centerY = cameraView.height / 2f
-//
-//        val rotationDegrees = when (cameraView.display.rotation) {
-//            Surface.ROTATION_0 -> 0
-//            Surface.ROTATION_90 -> 90
-//            Surface.ROTATION_180 -> 180
-//            Surface.ROTATION_270 -> 270
-//            else -> return
-//        }
-//
-//        matrix.postRotate(-rotationDegrees.toFloat(), centerX, centerY)
-//
-//        cameraView.setTransform(matrix)
-//
-//    }
 
     /**
      * 生成照片水印信息
