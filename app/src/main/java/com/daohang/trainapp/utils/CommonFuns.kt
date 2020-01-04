@@ -146,6 +146,36 @@ fun compressImage(file: File, pf: PhotoPrintInfo?, drawText: Boolean = true): By
     return baos.toByteArray()
 }
 
+fun compressImage(data: ByteArray, pf: PhotoPrintInfo?, drawText: Boolean = true): ByteArray {
+    val bitmap = BitmapFactory.decodeByteArray(data, 0, data.size)
+    val mutableBitmap: Bitmap = bitmap.copy(bitmap.config, true)
+
+    if (drawText)
+        drawTextToBitmap(mutableBitmap, pf!!)
+
+    val maxFileSize = 30
+    val baos = ByteArrayOutputStream()
+    var options = 100
+    mutableBitmap.compress(
+        Bitmap.CompressFormat.JPEG,
+        options,
+        baos
+    ) //质量压缩方法，把压缩后的数据存放到baos中 (100表示不压缩，0表示压缩到最小)
+
+
+    var baosLength = baos.toByteArray().size
+    while (baosLength / 1024 > maxFileSize) { //循环判断如果压缩后图片是否大于maxMemmorrySize,大于继续压缩
+        baos.reset() //重置baos即让下一次的写入覆盖之前的内容
+        options = Math.max(0, options - 10) //图片质量每次减少10
+        mutableBitmap.compress(Bitmap.CompressFormat.JPEG, options, baos) //将压缩后的图片保存到baos中
+        baosLength = baos.toByteArray().size
+        if (options == 0) //如果图片的质量已降到最低则，不再进行压缩
+            break
+    }
+
+    return baos.toByteArray()
+}
+
 /**
  * 添加水印
  */

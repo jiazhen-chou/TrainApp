@@ -42,7 +42,7 @@ object ApiFactory {
 
     fun projectRetrofit(ip: String, port: Int): Retrofit = Retrofit.Builder()
         .client(okHttpClient)
-        .baseUrl("http://$ip:$port")
+        .baseUrl("http://$ip:$port/driverTrain/")
         .addConverterFactory(GsonConverterFactory.create())
         .build()
 

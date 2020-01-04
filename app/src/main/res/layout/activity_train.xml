@@ -12,11 +12,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <TextureView
+        <FrameLayout
+            android:id="@+id/surfaceView"
             android:layout_weight="1"
-            android:id="@+id/cameraView"
             android:layout_width="0dp"
             android:layout_height="match_parent"/>
+
+<!--        <TextureView-->
+<!--            android:visibility="gone"-->
+<!--            android:layout_weight="1"-->
+<!--            android:id="@+id/cameraView"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="match_parent"/>-->
 
         <com.daohang.trainapp.components.LoginItem
             android:layout_marginRight="17dp"

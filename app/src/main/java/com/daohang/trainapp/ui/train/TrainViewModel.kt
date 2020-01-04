@@ -22,6 +22,7 @@ import com.daohang.trainapp.ui.registerInfo
 import com.daohang.trainapp.utils.*
 import com.yz.lz.modulapi.CardInfo
 import kotlinx.coroutines.launch
+import java.io.File
 import java.util.*
 import java.util.concurrent.Executors
 import kotlin.concurrent.thread
@@ -367,4 +368,15 @@ class TrainViewModel(application: Application) : BaseViewModel(application) {
                 )
             }
         }
+
+    /**
+     * 保存图片文件
+     */
+    fun savePicture(file: File, data: ByteArray){
+        executor.execute {
+            file.writeBytes(data)
+            Log.d("TrainViewModel", "文件长度：${file.length() / 1024}KB")
+            Log.d("TrainViewModel","图片保存位置：${file.absolutePath}")
+        }
+    }
 }

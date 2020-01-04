@@ -129,7 +129,8 @@ class MainActivity : BaseActivity() {
                     tvTitle.text = projectName
                     tvClientId.text = "SIM卡: ${vehiclePreference.clientId}"
 
-                    viewModel.initProjectApi(apiDomain, apiPort)
+//                    viewModel.initProjectApi(apiDomain, apiPort)
+                    viewModel.initProjectApi("192.168.2.41", 8080)
 
                     viewModel.code = code
                     if (!viewModel.isDownloading)
