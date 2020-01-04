@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="421dp"
+    android:layout_height="56dp" android:gravity="center_vertical"
+    android:background="@color/selfcheck_white_bg">
+
+    <ImageView
+        android:layout_marginEnd="13dp"
+        android:layout_marginStart="25dp"
+        android:src="@drawable/car_info"
+        android:layout_width="20dp"
+        android:layout_height="20dp"/>
+
+    <TextView
+        android:textColor="@color/white"
+        android:layout_weight="1"
+        android:textSize="18sp"
+        android:text="车辆信息"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"/>
+
+    <ImageView
+        android:layout_marginEnd="19dp"
+        android:src="@drawable/triangle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>

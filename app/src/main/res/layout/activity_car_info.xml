@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_marginLeft="81dp"
+    android:layout_marginRight="81dp"
+    android:gravity="center_horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_marginTop="38dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.daohang.trainapp.components.SelectedInputView
+            android:layout_marginRight="45dp"
+            android:id="@+id/inputId"
+            app:title="终端ID："
+            app:hideStar="true"
+            app:etFocusable="false"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"/>
+
+        <com.daohang.trainapp.components.SelectedInputView
+            android:layout_marginLeft="45dp"
+            android:id="@+id/inputCarType"
+            app:title="车型："
+            app:hideStar="true"
+            app:etFocusable="false"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"/>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="56dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.daohang.trainapp.components.SelectedInputView
+            android:layout_marginRight="45dp"
+            android:id="@+id/inputCarNumber"
+            app:title="车牌号："
+            app:hideStar="true"
+            app:etFocusable="false"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"/>
+
+        <com.daohang.trainapp.components.SelectedInputView
+            android:layout_marginLeft="45dp"
+            android:id="@+id/inputCarColor"
+            app:title="车牌颜色："
+            app:hideStar="true"
+            app:etFocusable="false"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"/>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="56dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.daohang.trainapp.components.SelectedInputView
+            android:layout_marginRight="45dp"
+            android:id="@+id/inputProvince"
+            app:title="省："
+            app:hideStar="true"
+            app:etFocusable="false"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"/>
+        <com.daohang.trainapp.components.SelectedInputView
+            android:layout_marginLeft="45dp"
+            android:id="@+id/inputCity"
+            app:title="市："
+            app:hideStar="true"
+            app:etFocusable="false"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"/>
+
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnSubmit"
+        android:layout_marginTop="38dp"
+        android:textSize="20sp"
+        android:textColor="@color/white"
+        android:background="@color/selfcheck_blue"
+        android:text="@string/btn_ensure"
+        android:layout_width="118dp"
+        android:layout_height="45dp"/>
+
+</LinearLayout>

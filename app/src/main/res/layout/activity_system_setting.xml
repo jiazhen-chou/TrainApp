@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:layout_marginLeft="@dimen/common_margin_left"
+    android:layout_marginRight="@dimen/common_margin_right"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:layout_marginTop="70dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:gravity="start"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:textSize="@dimen/normal_text"
+                android:textColor="@color/white"
+                android:text="@string/domain"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <EditText
+                android:id="@+id/etDomain"
+                android:textSize="@dimen/normal_text"
+                android:textColor="@color/white"
+                android:focusable="false"
+                android:paddingLeft="24dp"
+                android:layout_marginLeft="10dp"
+                android:background="@color/selfcheck_white_bg"
+                android:layout_width="300dp"
+                android:layout_height="56dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:gravity="end"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:textSize="@dimen/normal_text"
+                android:text="@string/port"
+                android:textColor="@color/white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <EditText
+                android:id="@+id/etPort"
+                android:textSize="@dimen/normal_text"
+                android:textColor="@color/white"
+                android:focusable="false"
+                android:paddingLeft="24dp"
+                android:layout_marginLeft="10dp"
+                android:background="@color/selfcheck_white_bg"
+                android:layout_width="300dp"
+                android:layout_height="56dp"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <Button
+        android:layout_marginTop="200dp"
+        android:text="@string/back"
+        android:id="@+id/btnBack"
+        android:background="@drawable/btn_border_blue"
+        android:textColor="@color/selfcheck_blue"
+        android:textSize="@dimen/normal_text"
+        android:layout_width="118dp"
+        android:layout_height="45dp"/>
+
+
+</LinearLayout>

@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginLeft="@dimen/common_margin_left"
+    android:layout_marginRight="@dimen/common_margin_right"
+    android:orientation="vertical"
+    tools:context=".ui.main.MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="420dp"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <ImageView
+                android:onClick="onClick"
+                android:id="@+id/btnPartTwo"
+                android:scaleType="centerCrop"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginBottom="19dp"
+                android:src="@mipmap/part_two" />
+
+            <ImageView
+                android:onClick="onClick"
+                android:id="@+id/btnParameterSetting"
+                android:scaleType="centerCrop"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:src="@mipmap/parameter_setting" />
+
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="18dp"
+            android:layout_height="match_parent" />
+
+        <LinearLayout
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <ImageView
+                android:onClick="onClick"
+                android:id="@+id/btnPartThree"
+                android:scaleType="centerCrop"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginBottom="19dp"
+                android:src="@mipmap/part_three" />
+
+            <ImageView
+                android:onClick="onClick"
+                android:id="@+id/btnWifiSetting"
+                android:scaleType="centerCrop"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:src="@mipmap/wifi_setting" />
+
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="18dp"
+            android:layout_height="match_parent" />
+
+
+        <LinearLayout
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <ImageView
+                android:onClick="onClick"
+                android:id="@+id/btnDesktop"
+                android:layout_width="match_parent"
+                android:layout_height="420dp"
+                android:layout_marginBottom="19dp"
+                android:src="@mipmap/desktop" />
+
+<!--            <ImageView-->
+<!--                android:scaleType="centerCrop"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="200dp"-->
+<!--                android:src="@drawable/parameter_setting" />-->
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_marginTop="32dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:textAlignment="textStart"
+            android:layout_alignParentStart="true"
+            android:id="@+id/tvClientId"
+            android:text="SIM卡: "
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+
+        <TextView
+            android:textAlignment="center"
+            android:layout_centerInParent="true"
+            android:id="@+id/tvImei"
+            android:text="IMEI: "
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:textAlignment="textEnd"
+            android:layout_alignParentEnd="true"
+            android:id="@+id/tvVersion"
+            android:text="VERSION: "
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </RelativeLayout>
+
+
+</LinearLayout>

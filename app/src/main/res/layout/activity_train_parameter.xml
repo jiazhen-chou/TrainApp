@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginLeft="@dimen/common_margin_left"
+    android:layout_marginRight="@dimen/common_margin_right"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:paddingTop="52dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <com.daohang.trainapp.components.ParameterItem
+            android:id="@+id/paPicture"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:paramTitle="@string/picture_interval" />
+
+        <com.daohang.trainapp.components.ParameterItem
+            android:id="@+id/paOverSpeed"
+            android:layout_marginLeft="69dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:paramTitle="@string/over_speed_value" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="13dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <com.daohang.trainapp.components.ParameterItem
+            android:id="@+id/paMaxHour"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:paramTitle="@string/max_hour_per_day" />
+
+        <com.daohang.trainapp.components.ParameterItem
+            android:id="@+id/paGeoFence"
+            android:layout_marginLeft="69dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:paramTitle="@string/is_open_geofence" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_weight="1"
+        android:layout_marginTop="13dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="horizontal">
+
+        <com.daohang.trainapp.components.ParameterItem
+            android:id="@+id/paOpenObd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:paramTitle="@string/is_open_obd" />
+
+        <com.daohang.trainapp.components.ParameterItem
+            android:id="@+id/paCoachCar"
+            android:layout_marginLeft="69dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:paramTitle="@string/coach_car_validate" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnBack"
+        android:layout_marginBottom="81dp"
+        android:textColor="@color/selfcheck_blue"
+        android:textSize="@dimen/normal_text"
+        android:text="@string/back"
+        android:background="@drawable/btn_border_blue"
+        android:layout_width="118dp"
+        android:layout_height="45dp"/>
+
+</LinearLayout>

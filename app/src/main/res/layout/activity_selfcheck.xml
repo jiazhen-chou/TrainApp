@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="60dp"
+    android:paddingRight="60dp"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    tools:context=".ui.selfcheck.SelfCheckActivity">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="904dp"
+            android:layout_height="56dp"
+            android:paddingLeft="32dp"
+            android:paddingTop="16dp"
+            android:paddingRight="32dp"
+            android:paddingBottom="16dp">
+
+            <TextView
+                android:id="@+id/tvRfid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:text="@string/module_rfid"
+                android:textAlignment="center"
+                android:textColor="@android:color/white"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/tvRfidState"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:textAlignment="center"
+                android:textColor="@color/selfcheck_blue"
+                android:textSize="20sp" />
+
+            <ProgressBar
+                android:id="@+id/loader_rfid"
+                style="?android:attr/progressBarStyle"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerInParent="true"
+                android:layout_marginRight="8dp"
+                android:visibility="visible" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/selfcheck_white_bg"
+            android:paddingLeft="32dp"
+            android:paddingTop="16dp"
+            android:paddingRight="32dp"
+            android:paddingBottom="16dp">
+
+            <TextView
+                android:id="@+id/tvGps"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:text="@string/module_gps"
+                android:textAlignment="center"
+                android:textColor="@android:color/white"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/tvGpsState"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:textAlignment="center"
+                android:textColor="@color/selfcheck_blue"
+                android:textSize="20sp" />
+
+            <ProgressBar
+                android:id="@+id/loader_gps"
+                style="?android:attr/progressBarStyle"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerInParent="true"
+                android:layout_marginRight="8dp"
+                android:visibility="visible" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="904dp"
+            android:layout_height="56dp"
+            android:paddingLeft="32dp"
+            android:paddingTop="16dp"
+            android:paddingRight="32dp"
+            android:paddingBottom="16dp">
+
+            <TextView
+                android:id="@+id/tvCamera"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:text="@string/module_camera"
+                android:textAlignment="center"
+                android:textColor="@android:color/white"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/tvCameraState"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:textAlignment="center"
+                android:textColor="@color/selfcheck_blue"
+                android:textSize="20sp" />
+
+            <ProgressBar
+                android:id="@+id/loader_camera"
+                style="?android:attr/progressBarStyle"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerInParent="true"
+                android:layout_marginRight="8dp"
+                android:visibility="visible" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/selfcheck_white_bg"
+            android:paddingLeft="32dp"
+            android:paddingTop="16dp"
+            android:paddingRight="32dp"
+            android:paddingBottom="16dp">
+
+            <TextView
+                android:id="@+id/tvObd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:text="@string/module_obd"
+                android:textAlignment="center"
+                android:textColor="@android:color/white"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/tvObdState"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:textAlignment="center"
+                android:textColor="@color/selfcheck_blue"
+                android:textSize="20sp" />
+
+            <ProgressBar
+                android:id="@+id/loader_obd"
+                style="?android:attr/progressBarStyle"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerInParent="true"
+                android:layout_marginRight="8dp"
+                android:visibility="visible" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="904dp"
+            android:layout_height="56dp"
+            android:paddingLeft="32dp"
+            android:paddingTop="16dp"
+            android:paddingRight="32dp"
+            android:paddingBottom="16dp">
+
+            <TextView
+                android:id="@+id/tvNetwork"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:text="@string/module_network"
+                android:textAlignment="center"
+                android:textColor="@android:color/white"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/tvNetworkState"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:textAlignment="center"
+                android:textColor="@color/selfcheck_blue"
+                android:textSize="20sp" />
+
+            <ProgressBar
+                android:id="@+id/loader_network"
+                style="?android:attr/progressBarStyle"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerInParent="true"
+                android:layout_marginRight="8dp"
+                android:visibility="visible" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:visibility="invisible"
+        android:gravity="center_vertical"
+        android:id="@+id/lnErrorMessage"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="94dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvUnNormal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/error_red"
+            android:textSize="13sp" />
+
+        <TextView
+            android:layout_below="@id/tvUnNormal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="电话：18729057437"
+            android:textColor="@color/error_red"
+            android:textSize="14sp" />
+
+        <Button
+            android:textSize="20sp"
+            android:id="@+id/btnReCheck"
+            android:text="再次自检"
+            android:textColor="@color/white"
+            android:background="@color/selfcheck_blue"
+            android:layout_alignParentEnd="true"
+            android:layout_width="118dp"
+            android:layout_height="45dp"/>
+
+    </RelativeLayout>
+
+</LinearLayout>

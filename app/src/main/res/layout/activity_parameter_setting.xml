@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginLeft="@dimen/common_margin_left"
+    android:layout_marginRight="@dimen/common_margin_right"
+    android:gravity="center_horizontal">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_marginTop="96dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/lnCarInfo"
+            android:gravity="center_vertical"
+            android:background="@color/selfcheck_white_bg"
+            android:orientation="horizontal"
+            android:layout_width="421dp"
+            android:layout_height="56dp">
+
+            <ImageView
+                android:layout_marginEnd="13dp"
+                android:layout_marginStart="25dp"
+                android:src="@drawable/car_info"
+                android:layout_width="20dp"
+                android:layout_height="20dp"/>
+
+            <TextView
+                android:textColor="@color/white"
+                android:layout_weight="1"
+                android:textSize="18sp"
+                android:text="@string/parameter_car_info"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"/>
+
+            <ImageView
+                android:layout_marginEnd="19dp"
+                android:src="@drawable/triangle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lnIdentify"
+            android:layout_marginStart="66dp"
+            android:gravity="center_vertical"
+            android:background="@color/selfcheck_white_bg"
+            android:orientation="horizontal"
+            android:layout_width="421dp"
+            android:layout_height="56dp">
+
+            <ImageView
+                android:layout_marginEnd="13dp"
+                android:layout_marginStart="25dp"
+                android:src="@drawable/verify_type"
+                android:layout_width="20dp"
+                android:layout_height="20dp"/>
+
+            <TextView
+                android:textColor="@color/white"
+                android:layout_weight="1"
+                android:textSize="18sp"
+                android:text="@string/parameter_verify_type"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"/>
+
+            <ImageView
+                android:layout_marginEnd="19dp"
+                android:src="@drawable/triangle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/lnTrainParam"
+        android:orientation="horizontal"
+        android:layout_marginTop="56dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:gravity="center_vertical"
+            android:background="@color/selfcheck_white_bg"
+            android:orientation="horizontal"
+            android:layout_width="421dp"
+            android:layout_height="56dp">
+
+            <ImageView
+                android:layout_marginEnd="13dp"
+                android:layout_marginStart="25dp"
+                android:src="@drawable/train_info"
+                android:layout_width="20dp"
+                android:layout_height="20dp"/>
+
+            <TextView
+                android:textColor="@color/white"
+                android:layout_weight="1"
+                android:textSize="18sp"
+                android:text="@string/parameter_train_info"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"/>
+
+            <ImageView
+                android:layout_marginEnd="19dp"
+                android:src="@drawable/triangle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lnSystemParam"
+            android:layout_marginStart="66dp"
+            android:gravity="center_vertical"
+            android:background="@color/selfcheck_white_bg"
+            android:orientation="horizontal"
+            android:layout_width="421dp"
+            android:layout_height="56dp">
+
+            <ImageView
+                android:layout_marginEnd="13dp"
+                android:layout_marginStart="25dp"
+                android:src="@drawable/sys_info"
+                android:layout_width="20dp"
+                android:layout_height="20dp"/>
+
+            <TextView
+                android:textColor="@color/white"
+                android:layout_weight="1"
+                android:textSize="18sp"
+                android:text="@string/parameter_sys_info"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"/>
+
+            <ImageView
+                android:layout_marginEnd="19dp"
+                android:src="@drawable/triangle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="94dp"
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/btnFactorySet"
+            android:textSize="@dimen/normal_text"
+            android:textColor="@color/button_yellow"
+            android:background="@drawable/btn_border_yellow"
+            android:text="@string/factory_reset"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <Button
+            android:id="@+id/btnLogout"
+            android:textSize="@dimen/normal_text"
+            android:textColor="@color/button_red"
+            android:layout_marginLeft="14dp"
+            android:background="@drawable/btn_border_red"
+            android:text="@string/logout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <Button
+            android:id="@+id/btnBack"
+            android:textSize="@dimen/normal_text"
+            android:textColor="@color/selfcheck_blue"
+            android:layout_marginLeft="14dp"
+            android:background="@drawable/btn_border_blue"
+            android:text="@string/back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+</LinearLayout>

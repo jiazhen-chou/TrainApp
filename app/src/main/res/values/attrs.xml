@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="SelectedInputView">
+        <attr name="title" format="string"/>
+        <attr name="inputStyle" format="enum">
+            <enum name="input" value="0"/>
+            <enum name="choose" value="1"/>
+        </attr>
+        <attr name="hideStar" format="boolean"/>
+        <attr name="bind" format="boolean"/>
+        <attr name="etFocusable" format="boolean"/>
+    </declare-styleable>
+
+    <declare-styleable name="IconButton">
+        <attr name="iconSrc" format="reference" />
+        <attr name="iconSize" format="dimension" />
+        <attr name="iconPadding" format="dimension" />
+    </declare-styleable>
+
+    <declare-styleable name="ParameterItem">
+        <attr name="paramTitle" format="reference|string"/>
+        <attr name="paramContent" format="string"/>
+        <attr name="paramLocked" format="boolean"/>
+    </declare-styleable>
+
+    <declare-styleable name="LoginItem">
+        <attr name="loginType" format="enum">
+            <enum name="student" value="0"/>
+            <enum name="coach" value="1"/>
+        </attr>
+        <attr name="loginName" format="string"/>
+        <attr name="loginId" format="string"/>
+        <attr name="loginStatus" format="boolean"/>
+        <attr name="loginBtnText" format="reference"/>
+        <attr name="loginBtnColor" format="reference"/>
+    </declare-styleable>
+</resources>

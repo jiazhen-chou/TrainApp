@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginLeft="60dp"
+    android:layout_marginRight="60dp">
+
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="50dp"
+        android:gravity="center_vertical"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/lnBottom"
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:textSize="18sp"
+            android:textColor="@color/selfcheck_blue"
+            android:text="@string/refresh"
+            android:background="@drawable/btn_border_blue"
+            android:id="@+id/btnRefresh"
+            android:layout_width="118dp"
+            android:layout_height="45dp" />
+
+        <View
+            android:layout_width="30dp"
+            android:layout_height="0dp"/>
+
+        <Button
+            android:textSize="18sp"
+            android:textColor="@color/selfcheck_blue"
+            android:text="@string/back"
+            android:background="@drawable/btn_border_blue"
+            android:id="@+id/btnBack"
+            android:layout_width="118dp"
+            android:layout_height="45dp" />
+
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_marginTop="10dp"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@id/lnBottom"
+        android:id="@+id/lvWifiList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+</RelativeLayout>

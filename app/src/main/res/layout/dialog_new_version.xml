@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="473dp"
+    android:layout_height="315dp" android:background="@drawable/gengxin">
+
+    <LinearLayout
+        android:layout_weight="1"
+        android:layout_marginLeft="260dp"
+        android:layout_marginTop="60dp"
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp">
+
+        <TextView
+            android:id="@+id/tvVersionCode"
+            android:text="发现新版本"
+            android:textSize="20sp"
+            android:textColor="@color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:layout_marginTop="13dp"
+            android:textSize="18sp"
+            android:text="新增功能:"
+            android:textColor="@color/gray_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/updateInfo"
+            android:textColor="@color/gray_text"
+            android:text="1.增加参数配置\n2.增加电子围栏\n3.优化UI界面"
+            android:textSize="18sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginBottom="36dp"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/btnCancel"
+            android:textSize="18sp"
+            android:textColor="@color/selfcheck_blue"
+            android:background="@drawable/btn_border_blue"
+            android:text="@string/cancel"
+            android:layout_width="118dp"
+            android:layout_height="38dp"/>
+
+        <Button
+            android:layout_marginLeft="15dp"
+            android:id="@+id/btnSubmit"
+            android:textSize="18sp"
+            android:textColor="@color/white"
+            android:background="@color/selfcheck_blue"
+            android:text="@string/btn_ensure"
+            android:layout_width="118dp"
+            android:layout_height="38dp"/>
+
+    </LinearLayout>
+
+</LinearLayout>

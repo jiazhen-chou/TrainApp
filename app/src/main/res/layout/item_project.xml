@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/viewRoot"
+    android:background="@color/selfcheck_white_bg"
+    android:layout_width="372dp"
+    android:layout_height="47dp"
+    android:layout_marginLeft="55dp"
+    android:layout_marginRight="55dp"
+    android:layout_marginBottom="22dp">
+
+    <TextView
+        android:background="@android:color/transparent"
+        android:layout_centerInParent="true"
+        android:id="@+id/tvProjectName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="白银驾培"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="20sp" />
+
+</RelativeLayout>

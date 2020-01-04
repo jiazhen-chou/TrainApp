@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginLeft="@dimen/common_margin_left"
+    android:layout_marginRight="@dimen/common_margin_right"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextureView
+            android:layout_weight="1"
+            android:id="@+id/cameraView"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"/>
+
+        <com.daohang.trainapp.components.LoginItem
+            android:layout_marginRight="17dp"
+            android:layout_marginLeft="17dp"
+            android:id="@+id/itemStudent"
+            app:loginType="student"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <com.daohang.trainapp.components.LoginItem
+            android:id="@+id/itemCoach"
+            app:loginType="coach"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="20dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="159dp">
+
+        <LinearLayout
+            android:background="#17ffffff"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:layout_width="529dp"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:gravity="end"
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:textAlignment="textEnd"
+                        android:textSize="@dimen/normal_text"
+                        android:textColor="@color/gray_text"
+                        android:text="@string/text_car_num"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:textAlignment="textEnd"
+                        android:layout_marginBottom="20dp"
+                        android:layout_marginTop="20dp"
+                        android:textSize="@dimen/normal_text"
+                        android:textColor="@color/gray_text"
+                        android:text="@string/text_longitude"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:textAlignment="textEnd"
+                        android:textSize="@dimen/normal_text"
+                        android:textColor="@color/gray_text"
+                        android:text="@string/text_time_passed"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginLeft="14dp"
+                    android:gravity="start"
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/tvCarNum"
+                        android:textAlignment="textStart"
+                        android:textSize="@dimen/normal_text"
+                        android:textColor="@color/white"
+                        android:text=""
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:id="@+id/tvLongitude"
+                        android:textAlignment="textStart"
+                        android:layout_marginBottom="20dp"
+                        android:layout_marginTop="20dp"
+                        android:textSize="@dimen/normal_text"
+                        android:textColor="@color/white"
+                        android:text="0.000"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:id="@+id/tvTotalTime"
+                        android:textAlignment="textStart"
+                        android:textSize="@dimen/normal_text"
+                        android:textColor="@color/white"
+                        android:text="0"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:gravity="center"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:layout_width="0dp"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:gravity="end"
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:textAlignment="textEnd"
+                        android:textSize="@dimen/normal_text"
+                        android:textColor="@color/gray_text"
+                        android:text="@string/text_train_part"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:textAlignment="textEnd"
+                        android:layout_marginBottom="20dp"
+                        android:layout_marginTop="20dp"
+                        android:textSize="@dimen/normal_text"
+                        android:textColor="@color/gray_text"
+                        android:text="@string/text_latitude"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:textAlignment="textEnd"
+                        android:textSize="@dimen/normal_text"
+                        android:textColor="@color/gray_text"
+                        android:text="@string/text_miles_passed"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginLeft="14dp"
+                    android:gravity="start"
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/tvClassName"
+                        android:textAlignment="textStart"
+                        android:textSize="@dimen/normal_text"
+                        android:textColor="@color/white"
+                        android:text=""
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:id="@+id/tvLatitude"
+                        android:textAlignment="textStart"
+                        android:layout_marginBottom="20dp"
+                        android:layout_marginTop="20dp"
+                        android:textSize="@dimen/normal_text"
+                        android:textColor="@color/white"
+                        android:text="0.000"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:id="@+id/tvTotalMiles"
+                        android:textAlignment="textStart"
+                        android:textSize="@dimen/normal_text"
+                        android:textColor="@color/white"
+                        android:text="0公里"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginLeft="64dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:textColor="@color/gray_text"
+                android:textSize="14sp"
+                android:text="@string/text_current_speed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:id="@+id/tvSpeed"
+                android:textColor="@color/white"
+                android:text="0.0"
+                android:textSize="72sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:text="@string/text_km_h"
+                android:textSize="16sp"
+                android:textColor="@color/gray_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginLeft="64dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:text="当前学习计时"
+                android:textSize="14sp"
+                android:textColor="@color/gray_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <LinearLayout
+                android:layout_marginTop="8dp"
+                android:background="@drawable/bg_clock"
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tvCountDown"
+                    android:textAlignment="center"
+                    android:textSize="24sp"
+                    android:textColor="@color/white"
+                    android:text="00:00:00"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/btnQuit"
+                android:gravity="center"
+                android:background="@drawable/btn_quit_bg"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal"
+                android:layout_width="87dp"
+                android:layout_height="27dp">
+
+                <ImageView
+                    android:src="@mipmap/btn_switch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:layout_marginLeft="6dp"
+                    android:textSize="14sp"
+                    android:textColor="@color/quit_red"
+                    android:text="@string/text_quit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

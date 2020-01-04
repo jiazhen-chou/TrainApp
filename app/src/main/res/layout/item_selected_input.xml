@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:gravity="center_vertical"
+    android:id="@+id/rootView"
+    android:paddingLeft="29dp" android:paddingRight="29dp"
+    android:layout_height="56dp" android:background="@color/selfcheck_white_bg">
+
+    <TextView
+        android:id="@+id/tvStar"
+        android:textSize="20sp"
+        android:text="*"
+        android:textColor="@android:color/holo_red_dark"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/tvTitle"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:text="终端ID："
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+
+    <EditText
+        android:id="@+id/etInput"
+        android:layout_weight="1"
+        android:background="@null"
+        android:textColorHint="#5E6974"
+        android:textColor="@color/white"
+        android:textAlignment="textEnd"
+        android:textSize="20sp"
+        android:hint="点击输入"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>
