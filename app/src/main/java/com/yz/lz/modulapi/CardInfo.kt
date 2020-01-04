@@ -109,6 +109,9 @@ data class CardInfo(
     }
 
     override fun toString(): String {
-        return "卡类型：$cardType \nid：$id \n 姓名：$name \n身份证号：$identification \n所属驾校：$company"
+        return "卡类型：$cardType \nid：$id \n 姓名：$name \n身份证号：$identification \n所属驾校：$company \n科目二总学时：$subjectTwoTotalTime \n科目二总里程: " +
+                "$subjectTwoTotalMiles \n科目二已学学时：$subjectTwoLearnedTime \n科目二已学里程：$subjectTwoLearnedMiles \n科目三总学时：$subjectThreeTotalTime \n" +
+                "科目三总里程：$subjectThreeTotalMiles \n科目三已学学时： $subjectThreeLearnedTime \n科目三已学里程：$subjectThreeLearnedMiles \n最后一次签到日期：$lastExitDate" +
+                " \n当天已学学时：$practiceTime 分钟"
     }
 }

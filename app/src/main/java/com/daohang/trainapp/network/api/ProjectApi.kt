@@ -1,13 +1,15 @@
 package com.daohang.trainapp.network.api
 
+import com.daohang.trainapp.db.models.FaceSearchRequestModel
+import com.daohang.trainapp.db.models.FaceSearchResponseModel
 import com.daohang.trainapp.db.models.GeoFenceModel
 import com.daohang.trainapp.db.models.VersionInfo
 import com.daohang.trainapp.network.ApiResult
 import com.daohang.trainapp.network.CommonApiResult
-import okhttp3.ResponseBody
-import retrofit2.Call
 import retrofit2.Response
+import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.POST
 import retrofit2.http.Path
 
 interface ProjectApi {
@@ -20,4 +22,7 @@ interface ProjectApi {
 
     @GET("version/{code}/2")
     suspend fun getNewVersion(@Path("code") code: String): Response<CommonApiResult<VersionInfo>>
+
+    @POST("rest/faceSearch")
+    suspend fun searchFace(@Body model: FaceSearchRequestModel): Response<ApiResult<FaceSearchResponseModel>>
 }

@@ -2,14 +2,17 @@ package com.daohang.trainapp.ui.carSetting
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.content.edit
 import androidx.lifecycle.ViewModelProviders
 import com.daohang.trainapp.R
 import com.daohang.trainapp.components.CarTypeDialog
 import com.daohang.trainapp.components.SelectedInputView
+import com.daohang.trainapp.constants.SP_VALIDATION
 import com.daohang.trainapp.db.models.PreferenceModel
 import com.daohang.trainapp.db.models.VehiclePreferenceModel
 import com.daohang.trainapp.ui.BaseActivity
 import com.daohang.trainapp.ui.WelcomeActivity
+import com.daohang.trainapp.utils.getValidateSp
 import com.daohang.trainapp.utils.inRange
 import kotlinx.android.synthetic.main.activity_car_setting.*
 import kotlinx.android.synthetic.main.component_header.*

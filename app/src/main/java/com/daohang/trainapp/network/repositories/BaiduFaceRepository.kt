@@ -4,7 +4,7 @@ import com.daohang.trainapp.db.models.BaiduAccessTokenModel
 import com.daohang.trainapp.db.models.BaiduFaceSearchResponseModel
 import com.daohang.trainapp.db.models.BaiduMatchFaceResponseModel
 import com.daohang.trainapp.network.api.BaiduApi
-import com.daohang.trainapp.network.requestModel.FaceSearchRequestModel
+import com.daohang.trainapp.network.requestModel.BaiduFaceSearchRequestModel
 import com.daohang.trainapp.network.requestModel.MatchFaceRequestModel
 
 class BaiduFaceRepository(private val api: BaiduApi) {
@@ -18,7 +18,7 @@ class BaiduFaceRepository(private val api: BaiduApi) {
 
     suspend fun searchFace(
         token: String,
-        body: FaceSearchRequestModel
+        body: BaiduFaceSearchRequestModel
     ): BaiduFaceSearchResponseModel? = api.searchFace(token, body).body()
 
 }

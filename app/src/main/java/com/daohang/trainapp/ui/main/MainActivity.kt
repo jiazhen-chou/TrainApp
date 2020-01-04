@@ -127,7 +127,7 @@ class MainActivity : BaseActivity() {
 
                     PASSWORD = passwordA
                     tvTitle.text = projectName
-                    tvClientId.text = "SIM卡: ${vehiclePreference?.clientId}"
+                    tvClientId.text = "SIM卡: ${vehiclePreference.clientId}"
 
                     viewModel.initProjectApi(apiDomain, apiPort)
 

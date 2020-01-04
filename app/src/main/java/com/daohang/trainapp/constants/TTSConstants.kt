@@ -57,3 +57,5 @@ const val WRITTING_CARD = "正在写卡，请稍候"
 const val WRITTING_CARD_FAIL = "写卡失败，请重试"
 
 const val WRITTING_CARD_SUCCESS = "写卡成功，请正对摄像头开始人脸识别"
+
+const val OVER_MAX_TIME_TODAY = "您当日培训时长已满，是否继续培训？"

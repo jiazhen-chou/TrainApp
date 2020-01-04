@@ -32,8 +32,8 @@ class SocketClientService(val ip: String, val port: Int, val model: RegisterMode
         println("开始连接socket")
 
         val builder = SocketConfig.Builder()
-            .setIp("192.168.2.41")
-            .setPort(8888)
+            .setIp(ip)
+            .setPort(port)
             .setThreadStrategy(ThreadStrategy.ASYNC)
             .setTimeout(30 * 1000)
             .build()

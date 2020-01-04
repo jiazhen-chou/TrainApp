@@ -52,7 +52,7 @@ class TrainActivity : BaseActivity() {
     }
 
     //认证方式
-    private var validationType: Int = VALIDATE_CARD
+    private var validationType: Int = globalPreferenceModel.authType
     //培训开始时的里程
     private var startDistance: Double = 0.0
     //已培训里程（单位米）
@@ -80,10 +80,13 @@ class TrainActivity : BaseActivity() {
     private var trainedTime = 0
     //培训开始时的已培训时长(分钟)
     private var startTime = 0
-    //上次签到是否为同一天
-    private var isSameDay = false
     //当天还剩余培训时间
     private var timeLeftToday = -1
+    //当天已培训时长
+    private var todayPraticeTime = 0
+    //一天最长培训时长
+    private var maxTimePerDay = 0
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         setLayoutId(R.layout.activity_train)
@@ -152,7 +155,7 @@ class TrainActivity : BaseActivity() {
                         viewModel.setState(LoginState.STUDENT_LOGOUT)
                     } else {
                         if (isOnline.value == false && validationType != VALIDATE_CARD)
-                            toast("无法连接服务器，请切换至刷卡签到")
+                            toast("无法连接服务器")
                         else
                             viewModel.setState(LoginState.STUDENT_LOGIN)
                     }
@@ -168,7 +171,7 @@ class TrainActivity : BaseActivity() {
                     toast("请先签退学员")
                 } else if (!itemCoach.status) {
                     if (isOnline.value == false && validationType != VALIDATE_CARD)
-                        toast("无法连接服务器，请切换至刷卡签到")
+                        toast("无法连接服务器")
                     else
                         viewModel.setState(LoginState.COACH_LOGIN)
                 }
@@ -209,7 +212,9 @@ class TrainActivity : BaseActivity() {
             if (viewModel.count != 0 && viewModel.count % 10 == 0)
                 viewModel.saveRecord(distance, trainedTime)
 
-            if (isSameDay)
+            if (maxTimePerDay - todayPraticeTime - viewModel.count / 60 <= 0) {
+                sendTTSMsg(OVER_MAX_TIME_TODAY)
+            }
 
             if (viewModel.count != 0 && viewModel.count % 60 == 0) {
                 insertRecord()
@@ -250,6 +255,7 @@ class TrainActivity : BaseActivity() {
                 val item = car.split(":")
                 carMap[item[0]] = item[1]
             }
+            maxTimePerDay = it.max_hour
         })
 
         viewModel.cardInfoLiveData.observe(this, Observer {
@@ -300,10 +306,34 @@ class TrainActivity : BaseActivity() {
                 LoginState.STUDENT_LOGIN -> {
                     if (it.cardType == CardType.StudentCard) {
                         viewModel.studentModel = it
+
+                        if (isOnline.value == false) {
+                            when (viewModel.className) {
+                                "第二部分" -> timeAndMilesModel.postValue(
+                                    TimeAndMilesModel(
+                                        it.subjectTwoTotalTime,
+                                        it.subjectTwoLearnedTime,
+                                        it.subjectTwoTotalMiles,
+                                        it.subjectTwoLearnedMiles
+                                    )
+                                )
+                                "第三部分" -> timeAndMilesModel.postValue(
+                                    TimeAndMilesModel(
+                                        it.subjectThreeTotalTime,
+                                        it.subjectThreeLearnedTime,
+                                        it.subjectThreeTotalMiles,
+                                        it.subjectThreeLearnedMiles
+                                    )
+                                )
+                                else -> Unit
+                            }
+                        }
+
                         //验证上次签到时间是否与当前时间为同一天
-                        isSameDay = isInSameDay(it.lastExitDate)
-                        if (isSameDay){
-                            TODO("需要从培训参数中获取每天最大培训时长")
+                        todayPraticeTime = if (isInSameDay(it.lastExitDate)) {
+                            it.practiceTime
+                        } else {
+                            0
                         }
                         if (validationType == VALIDATE_BOTH)
                             loginByFace()
@@ -322,12 +352,12 @@ class TrainActivity : BaseActivity() {
                     } else {
                         sendTTSMsg(WRITTING_CARD)
                         //写入最后签退日期
-                        viewModel.writeLastDate(formatDate(System.currentTimeMillis()))
                         viewModel.writeMilesAndTime(
                             time = trainedTime,
-                            miles = (distance / 100).toInt()
+                            miles = (distance / 100).toInt(),
+                            date = formatDate(System.currentTimeMillis()),
+                            todayTime = (if (viewModel.count % 60 > 30) viewModel.count / 60 + 1 else viewModel.count / 60) + todayPraticeTime
                         )
-                        viewModel.writePraticeTimeToday(trainedTime - startTime)
                     }
                 }
             }
@@ -366,6 +396,72 @@ class TrainActivity : BaseActivity() {
                     stopTrain()
                 }
                 else -> return@Observer
+            }
+        })
+
+        viewModel.faceSearchLiveData.observe(this, Observer {
+            if (it != null) {
+                Log.d("FaceSearch", it.toString())
+                when (viewModel.loginState.value) {
+                    LoginState.COACH_LOGOUT -> if (it.usercode == viewModel.coachModel!!.id) {
+                        sendTTSMsg(COACH_LOGOUT_SUCCESS)
+                        setInfo()
+                    } else
+                        sendTTSMsg(WRONG_COACH)
+
+                    LoginState.COACH_LOGIN -> {
+                        CardInfo(
+                            CardType.CommonCoachCard,
+                            it.usercode,
+                            it.userName,
+                            it.idcard,
+                            it.insName,
+                            enumCarType(it.trainType.toHexInt()),
+                            0,
+                            if (it.subject == 2.toByte()) it.minSubHour else 0,
+                            if (it.subject == 3.toByte()) it.minSubHour else 0,
+                            if (it.subject == 2.toByte()) it.minSubMil else 0,
+                            if (it.subject == 3.toByte()) it.minSubMil else 0,
+                            0
+                        ).also { cardInfo ->
+                            if (verifyCarType(cardInfo)) {
+                                viewModel.coachModel = cardInfo
+
+                                sendTTSMsg(COACH_LOGIN_SUCCESS)
+                                setInfo()
+                            } else {
+                                sendTTSMsg(COACH_CARTYPE_ERROR)
+                            }
+                        }
+                    }
+                    LoginState.STUDENT_LOGOUT -> if (it.usercode == viewModel.studentModel!!.id) {
+                        sendTTSMsg(STUDENT_LOGOUT_SUCCESS)
+                        setInfo()
+                    } else
+                        sendTTSMsg(WRONG_STUDENT)
+                    LoginState.STUDENT_LOGIN -> {
+                        sendTTSMsg(LOGIN_SUCCESS)
+                        viewModel.studentModel = CardInfo(
+                            CardType.StudentCard,
+                            it.usercode,
+                            it.userName,
+                            it.idcard,
+                            it.insName,
+                            enumCarType(it.trainType.toHexInt()),
+                            0,
+                            if (it.subject == 2.toByte()) it.minSubHour else 0,
+                            if (it.subject == 3.toByte()) it.minSubHour else 0,
+                            if (it.subject == 2.toByte()) it.minSubMil else 0,
+                            if (it.subject == 3.toByte()) it.minSubMil else 0,
+                            0
+                        )
+                        todayPraticeTime = it.daySum
+                        setInfo()
+                    }
+                    else -> return@Observer
+                }
+            } else {
+                sendTTSMsg(FACE_FAIL)
             }
         })
 
@@ -451,6 +547,10 @@ class TrainActivity : BaseActivity() {
         })
     }
 
+    /**
+     * 验证最后签退日期是否为今天
+     * @param lastCheckDate 最后签退日期
+     */
     private fun isInSameDay(lastCheckDate: String) =
         formatDate(System.currentTimeMillis()) == lastCheckDate
 
@@ -462,6 +562,10 @@ class TrainActivity : BaseActivity() {
         AlertDialog.Builder(this)
             .setMessage("您有未完成的培训，是否继续学习？")
             .setNegativeButton("否") { _, _ ->
+                trainedTime = studentModel.currentTrainTime
+                viewModel.count = studentModel.currentCount
+                distance = studentModel.currentTrainMiles
+
                 viewModel.setState(LoginState.STUDENT_LOGOUT)
             }
             .setPositiveButton("是") { _, _ ->
@@ -679,7 +783,6 @@ class TrainActivity : BaseActivity() {
 
     /**
      * 清空页面学员信息，将登出信息保存到数据库
-     * @param info 卡信息，用于验证是否为同一人
      */
     private fun clearStudentLoginInfo() {
         captureInProgress(EVENT_TYPE_STUDENT_LOGOUT, viewModel.coachModel, viewModel.studentModel)
@@ -718,9 +821,7 @@ class TrainActivity : BaseActivity() {
      * 登录/登出
      */
     private fun doLogin() {
-        //离线且签到方式不为仅刷卡时，强制签退
-        //&& validationType != VALIDATE_CARD
-        if (isOnline.value == false) {
+        if (isOnline.value == false && validationType != VALIDATE_CARD) {
             if (viewModel.loginState.value == LoginState.COACH_LOGOUT)
                 showForceLogoutDialog(1)
             else if (viewModel.loginState.value == LoginState.STUDENT_LOGOUT)
@@ -907,14 +1008,26 @@ class TrainActivity : BaseActivity() {
                     Log.d(TAG, "加密串大小: ${str.length / 1024}KB")
                     Log.d(TAG, "BASE64加密结束: ${currentTimeWithSeconds()}")
 
-                    var group_id = groupId
+                    val group_id = groupId
+                    var type = 1
+                    val numberNeed = when (validationType) {
+                        VALIDATE_BOTH -> true
+                        else -> false
+                    }
                     when (viewModel.loginState.value) {
                         LoginState.STUDENT_LOGIN,
-                        LoginState.STUDENT_LOGOUT -> group_id += "_1"
+                        LoginState.STUDENT_LOGOUT -> {
+//                            group_id += "_1"
+                            type = 1
+                        }
                         LoginState.COACH_LOGIN,
-                        LoginState.COACH_LOGOUT -> group_id += "_2"
+                        LoginState.COACH_LOGOUT -> {
+//                            group_id += "_2"
+                            type = 2
+                        }
                     }
-                    viewModel.matchFace(str.replaceBlank(), group_id)
+//                    viewModel.matchFace(str.replaceBlank(), group_id)
+                    viewModel.searchFace(str.replaceBlank(), group_id, type, numberNeed)
                 }
 
                 override fun onError(

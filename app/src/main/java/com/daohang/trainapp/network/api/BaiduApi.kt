@@ -3,7 +3,7 @@ package com.daohang.trainapp.network.api
 import com.daohang.trainapp.db.models.BaiduAccessTokenModel
 import com.daohang.trainapp.db.models.BaiduFaceSearchResponseModel
 import com.daohang.trainapp.db.models.BaiduMatchFaceResponseModel
-import com.daohang.trainapp.network.requestModel.FaceSearchRequestModel
+import com.daohang.trainapp.network.requestModel.BaiduFaceSearchRequestModel
 import com.daohang.trainapp.network.requestModel.MatchFaceRequestModel
 import com.daohang.trainapp.constants.BAIDU_AK
 import com.daohang.trainapp.constants.BAIDU_GRANT_TYPE
@@ -30,5 +30,5 @@ interface BaiduApi {
 
 //    @Headers("Content-Type:application/json")
     @POST("rest/2.0/face/v3/search")
-    suspend fun searchFace(@Query("access_token") token: String, @Body body: FaceSearchRequestModel): Response<BaiduFaceSearchResponseModel>
+    suspend fun searchFace(@Query("access_token") token: String, @Body body: BaiduFaceSearchRequestModel): Response<BaiduFaceSearchResponseModel>
 }

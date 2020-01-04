@@ -1,6 +1,7 @@
 package com.daohang.trainapp.ui.train
 
 import android.app.Application
+import android.util.Log
 import androidx.core.content.edit
 import androidx.lifecycle.MutableLiveData
 import com.daohang.trainapp.MyApplication
@@ -14,7 +15,7 @@ import com.daohang.trainapp.enums.LoginState
 import com.daohang.trainapp.network.ApiFactory
 import com.daohang.trainapp.network.repositories.BaiduFaceRepository
 import com.daohang.trainapp.network.repositories.CommonRepository
-import com.daohang.trainapp.network.requestModel.FaceSearchRequestModel
+import com.daohang.trainapp.network.requestModel.BaiduFaceSearchRequestModel
 import com.daohang.trainapp.services.*
 import com.daohang.trainapp.ui.BaseViewModel
 import com.daohang.trainapp.ui.registerInfo
@@ -33,6 +34,8 @@ class TrainViewModel(application: Application) : BaseViewModel(application) {
 
     //百度人脸识别结果
     val matchFaceResultLiveData = MutableLiveData<BaiduFaceSearchResponseModel>()
+    //人脸识别结果
+    val faceSearchLiveData = MutableLiveData<FaceSearchResponseModel?>()
     //培训参数
     val trainPreferenceLiveData = DaoHelper.TrainPreference.getTrainPreferenceLiveData()
     //写卡结果
@@ -214,7 +217,7 @@ class TrainViewModel(application: Application) : BaseViewModel(application) {
     fun getRegisterInfo() = DaoHelper.Register.getRegisterInfo()
 
     /**
-     * 人脸识别
+     * 百度人脸识别
      */
     fun matchFace(picture: String, groupId: String) {
         scope.launch {
@@ -223,11 +226,46 @@ class TrainViewModel(application: Application) : BaseViewModel(application) {
                 matchFaceResultLiveData.postValue(
                     baiduFaceRepository.searchFace(
                         it.access_token,
-                        FaceSearchRequestModel(picture, group_id_list = groupId)
+                        BaiduFaceSearchRequestModel(picture, group_id_list = groupId)
                     )
 //                    baiduFaceRepository.searchFace(it.access_token, FaceSearchRequestModel(picture, group_id_list = groupId))
                 )
             }
+        }
+    }
+
+    /**
+     * 人脸识别
+     */
+    fun searchFace(picture: String, groupId: String, type: Int, numberNeed: Boolean) {
+        scope.launch {
+            var number = ""
+            if (numberNeed && studentModel != null && coachModel != null){
+                number = when(type){
+                    1 -> studentModel!!.id
+                    2 -> coachModel!!.id
+                    else -> ""
+                }
+            }
+            val requestModel = FaceSearchRequestModel(
+                image = picture,
+                inscode = groupId,
+                type = type.toByte(),
+                subject = if (className == "第二部分") 2 else 3,
+                num = number
+            )
+
+            faceSearchLiveData.postValue(commonRepository.faceSearch(requestModel))
+        }
+    }
+
+    fun writeNewData() {
+        thread {
+            val data = mutableListOf<Byte>()
+            for (i in 0 until 24)
+                data.add(0)
+
+            writeCard(1239, data.toByteArray())
         }
     }
 
@@ -237,36 +275,48 @@ class TrainViewModel(application: Application) : BaseViewModel(application) {
      * @param time 已培训学时
      * @param miles 已培训里程
      */
-    fun writeMilesAndTime(time: Int, miles: Int) {
+    fun writeMilesAndTime(time: Int, miles: Int, todayTime: Int, date: String) {
         thread {
+            Log.d(
+                "TrainViewModel",
+                "已培训学时：$time, 已培训里程： $miles, 今日已培训时长： $todayTime, 最后签退日期啊：$date"
+            )
+
             val data = ByteArray(8)
             System.arraycopy(time.toByteArray4(), 0, data, 0, 4)
             System.arraycopy(miles.toByteArray4(), 0, data, 4, 4)
-            writeCardLiveData.postValue(
-                if (className == "第二部分")
-                    writeSubjectTwo(data)
-                else
-                    writeSubjectThree(data)
-            )
+
+            var result: Boolean
+            if (className == "第二部分")
+                result = writeSubjectTwo(data)
+            else
+                result = writeSubjectThree(data)
+
+            if (result)
+                writeLastDate(date, todayTime)
+            else
+                Log.e("TrainViewModel", "里程学时写入失败")
         }
     }
 
     /**
      * 写入最后一次签退日期
      */
-    fun writeLastDate(date: String) {
-        thread {
-            writeLastExitDate(date.toBcd())
-        }
+    fun writeLastDate(date: String, todayTime: Int) {
+        if (writeLastExitDate(date.toBcd()))
+            writePraticeTimeToday(todayTime)
+        else
+            Log.e("TrainViewModel", "最后签退日期写入失败")
     }
 
     /**
      * 写入今日培训时长
      */
-    fun writePraticeTimeToday(time: Int){
-        thread {
-            writeToadyPraticeTime(time.toByteArray4())
-        }
+    fun writePraticeTimeToday(time: Int) {
+        val result = writeToadyPraticeTime(time.toByteArray4())
+        if (!result)
+            Log.e("TrainViewModel", "今日培训时长写入失败")
+        writeCardLiveData.postValue(result)
     }
 
     /**

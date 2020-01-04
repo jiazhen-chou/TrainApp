@@ -5,7 +5,6 @@ import com.daohang.trainapp.ui.BaseViewModel
 
 class IdentifySettingViewModel(application: Application): BaseViewModel(application){
 
-    fun getPreferenceModel() =
-        database.preferenceDao().getPreferenceLiveData()
+
 
 }
