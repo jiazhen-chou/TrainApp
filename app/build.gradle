@@ -60,11 +60,6 @@ dependencies {
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-//    implementation files('libs/bcprov-jdk15-143.jar')
-//    implementation files('libs/mina-core-2.0.7.jar')
-//    implementation files('libs/usc.jar')
-//    implementation files('libs/Msc.jar')
-
     implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation "androidx.appcompat:appcompat:$appcompat_version"
     implementation "androidx.core:core-ktx:$core_ktx_version"
@@ -92,14 +87,8 @@ dependencies {
 
     implementation "com.github.nkzawa:socket.io-client:$socket_io_version"
 
-    implementation "com.amap.api:location:latest.integration"
-    implementation 'com.amap.api:3dmap:latest.integration'
-
-//    api 'com.tonystark.android:socket:4.2.3'
-
-
-//    implementation "com.squareup.okhttp3:okhttp:$okhttp_version"
-//    implementation "com.squareup.okhttp3:mockwebserver:$okhttp_version"
+    implementation "com.amap.api:location:4.8.0"
+    implementation 'com.amap.api:3dmap:7.1.0'
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.2.0'
