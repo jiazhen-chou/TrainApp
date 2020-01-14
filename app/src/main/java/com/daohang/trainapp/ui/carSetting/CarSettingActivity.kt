@@ -58,6 +58,12 @@ class CarSettingActivity : BaseActivity(), View.OnClickListener {
                 toast("请输入设备id")
             else if (inputCarNumber.content == null)
                 toast("请输入车牌号")
+            else if (inputCarType.content == null)
+                toast("请输入车型")
+            else if (inputCarColor.content == null)
+                toast("请输入车牌颜色")
+            else if (inputProvince.content == null || inputCity.content == null)
+                toast("请输入省市地区")
             else {
                 vehiclePreferenceModel.clientId = inputId.content
                 vehiclePreferenceModel.vehicleNumber = inputCarNumber.content

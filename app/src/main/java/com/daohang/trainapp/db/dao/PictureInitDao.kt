@@ -24,4 +24,7 @@ interface PictureInitDao {
 
     @Query("select * from picture_info where pictureId=:pictureId")
     fun getPictureInfoById(pictureId: ByteArray): PictureInitModel?
+
+    @Query("delete from picture_info")
+    fun delete()
 }

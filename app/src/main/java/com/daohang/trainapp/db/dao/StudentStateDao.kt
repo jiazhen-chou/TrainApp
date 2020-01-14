@@ -18,4 +18,7 @@ interface StudentStateDao {
 
     @Query("select * from student_state where hasUploaded = 0 order by time")
     fun findStudentUnUploaded(): LiveData<List<StudentStateModel>>
+
+    @Query("delete from student_state")
+    fun delete()
 }

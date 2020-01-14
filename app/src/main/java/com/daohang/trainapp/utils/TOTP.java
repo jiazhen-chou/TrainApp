@@ -11,18 +11,6 @@ import java.util.Date;
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
 
-/**
- * <p>ClassName: TOTP</p>
- * <p>Description: TOTP = HOTP(K, T) // T is an integer
- * and represents the number of time steps between the initial counter
- * time T0 and the current Unix time
- * <p>
- * More specifically, T = (Current Unix time - T0) / X, where the
- * default floor function is used in the computation.</p>
- *
- * @author wangqian
- * @date 2018-04-03 11:44
- */
 public class TOTP {
     public static void main(String[] args) {
         try {
@@ -51,7 +39,7 @@ public class TOTP {
     /**
      * 转码位数 [1-8]
      */
-    private static final int CODE_DIGITS = 6;
+    private static final int CODE_DIGITS = 4;
 
     /**
      * 初始化时间

@@ -18,4 +18,7 @@ interface CoachStateDao{
 
     @Query("select * from coach_state where hasUploaded = 0 order by time")
     fun findCoachUnUploaded(): LiveData<List<CoachStateModel>>
+
+    @Query("delete from coach_state")
+    fun delete()
 }

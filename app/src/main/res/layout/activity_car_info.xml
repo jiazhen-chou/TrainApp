@@ -95,13 +95,23 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/btnSubmit"
         android:layout_marginTop="38dp"
-        android:textSize="20sp"
-        android:textColor="@color/white"
-        android:background="@color/selfcheck_blue"
-        android:text="@string/btn_ensure"
+        android:text="@string/back"
+        android:id="@+id/btnSubmit"
+        android:background="@drawable/btn_border_blue"
+        android:textColor="@color/selfcheck_blue"
+        android:textSize="@dimen/normal_text"
         android:layout_width="118dp"
         android:layout_height="45dp"/>
+
+<!--    <Button-->
+<!--        android:id="@+id/btnSubmit"-->
+<!--        android:layout_marginTop="38dp"-->
+<!--        android:textSize="20sp"-->
+<!--        android:textColor="@color/white"-->
+<!--        android:background="@color/selfcheck_blue"-->
+<!--        android:text="@string/btn_ensure"-->
+<!--        android:layout_width="118dp"-->
+<!--        android:layout_height="45dp"/>-->
 
 </LinearLayout>

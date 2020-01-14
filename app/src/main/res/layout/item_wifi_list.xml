@@ -22,4 +22,15 @@
         android:layout_width="30dp"
         android:layout_height="match_parent"/>
 
+    <TextView
+        android:layout_centerVertical="true"
+        android:layout_marginRight="20dp"
+        android:layout_toLeftOf="@id/ivWifiSignal"
+        android:textSize="18sp"
+        android:id="@+id/isConnected"
+        android:text="已连接"
+        android:textColor="@color/button_red"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
 </RelativeLayout>

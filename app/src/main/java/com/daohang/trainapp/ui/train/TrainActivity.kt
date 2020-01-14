@@ -142,7 +142,8 @@ class TrainActivity : BaseActivity() {
         tvClassName.text = viewModel.className
 
         btnQuit.onClick {
-            finish()
+            if (!isTraining)
+                finish()
         }
 
         itemStudent.setOnClick(object : OnMyClickListener {
@@ -185,13 +186,17 @@ class TrainActivity : BaseActivity() {
             tvLatitude.text = String.format("%.6f", it)
         })
 
-        //
+        //当前里程
         currentDistance.observe(this, Observer {
             if (isTraining) {
                 distance += it
                 val trueDistance = distance / 1000
-                tvTotalMiles.text =
-                    "${if (trueDistance == 0.0) 0 else DecimalFormat("#.000").format(trueDistance)}公里"
+                when {
+                    trueDistance > 1 -> tvTotalMiles.text =
+                        "${DecimalFormat("#.000").format(trueDistance)}公里"
+                    trueDistance == 0.0 -> tvTotalMiles.text = "0公里"
+                    else -> tvTotalMiles.text = "${DecimalFormat("0.000").format(trueDistance)}公里"
+                }
             }
         })
 
@@ -227,8 +232,7 @@ class TrainActivity : BaseActivity() {
             tvCarNum.text = it.vehiclePreference.vehicleNumber
             carNum = it.vehiclePreference.vehicleNumber
             carType = it.vehiclePreference.vehicleType
-//            validationType = it.authType
-            validationType = VALIDATE_BOTH
+            validationType = it.authType
         }
 
         /**
@@ -239,6 +243,12 @@ class TrainActivity : BaseActivity() {
          */
         timeAndMilesModel.observe(this, Observer {
             tvTotalMiles.text = "${DecimalFormat("#.000").format(it.currentMiles.toFloat() / 10)}公里"
+            val miles = it.currentMiles.toFloat() / 10
+            when {
+                miles > 1 -> tvTotalMiles.text = "${DecimalFormat("#.000").format(miles)}公里"
+                miles == 0f -> tvTotalMiles.text = "0公里"
+                else -> tvTotalMiles.text = "${DecimalFormat("0.000").format(miles)}公里"
+            }
             distance = (it.currentMiles * 100).toDouble()
             startDistance = distance
             trainedTime = it.currentTime
@@ -978,7 +988,7 @@ class TrainActivity : BaseActivity() {
         val file = File(externalMediaDirs.first(), "$photoId.jpg")
 
         Log.d(TAG, "开始拍照: ${currentTimeWithSeconds()}")
-        mCamera?.takePicture(null, null){ data, _ ->
+        mCamera?.takePicture(null, null) { data, _ ->
 
             viewModel.savePicture(file, data)
 
@@ -1039,7 +1049,7 @@ class TrainActivity : BaseActivity() {
             else -> ByteArray(16)
         }
 
-        mCamera?.takePicture(null, null){ data, _ ->
+        mCamera?.takePicture(null, null) { data, _ ->
 
             viewModel.savePicture(file, data)
 
@@ -1127,7 +1137,8 @@ class TrainActivity : BaseActivity() {
     private fun getPhotoId(): String =
         formatTimeHms(System.currentTimeMillis()).substring(2 until 12)
 
-    override fun onDestroy() {
+    override fun onStop() {
+        super.onStop()
         viewModel.stopCountDown()
         viewModel.stopCheckCard()
 
@@ -1136,7 +1147,5 @@ class TrainActivity : BaseActivity() {
             mCamera!!.release()
             mCamera = null
         }
-
-        super.onDestroy()
     }
 }

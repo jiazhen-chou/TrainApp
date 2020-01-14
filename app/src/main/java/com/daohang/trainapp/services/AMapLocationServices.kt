@@ -53,11 +53,13 @@ class AMapLocationServices(val context: Application) : AMapLocationListener{
         location?.run {
             if (errorCode == 0) {
                 val gps = GpsUtil.toWGS84Point(latitude, longitude)
+                val gpsLatitude = gps[0]
+                val gpsLongitude = gps[1]
                 lastLocation = currentLocation
 
                 //更新当前坐标
                 currentLocation = LocationModel(
-                    0, 0, gps[1], gps[0], speed, speed, bearing.toInt()
+                    0, 0, gpsLatitude, gpsLongitude, speed, speed, bearing.toInt()
                 )
 
                 //计算距离
@@ -81,8 +83,8 @@ class AMapLocationServices(val context: Application) : AMapLocationListener{
                     }
                 }
 
-                lastLongitude.postValue(gps[1])
-                lastLatitude.postValue(gps[0])
+                lastLongitude.postValue(gpsLongitude)
+                lastLatitude.postValue(gpsLatitude)
 
                 if (isTraining) {
                     polygons[currentClassItem.toInt()]?.let {

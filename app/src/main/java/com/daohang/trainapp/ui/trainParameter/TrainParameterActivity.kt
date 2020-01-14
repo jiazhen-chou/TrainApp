@@ -34,9 +34,9 @@ class TrainParameterActivity : BaseActivity(){
 
         btnBack.onClick { finish() }
 
-        paCoachCar.onClick {
-            toast("验证车型")
-        }
+//        paCoachCar.onClick {
+//            toast("验证车型")
+//        }
     }
 
     private fun initData(model: TrainPreferenceModel?){

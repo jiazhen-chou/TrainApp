@@ -1,26 +1,25 @@
 package com.daohang.trainapp
 
 import android.app.Application
-import android.content.IntentFilter
+import android.content.Context
 import android.location.LocationManager
 import android.net.ConnectivityManager
 import android.os.HandlerThread
 import androidx.core.content.getSystemService
-import com.amap.api.fence.GeoFenceClient
 import com.daohang.trainapp.constants.DEVICE_1700
 import com.daohang.trainapp.constants.NETWORK_STATE_CHANGE
 import com.daohang.trainapp.constants.TIME_STATE_CHANGE
 import com.daohang.trainapp.livebus.NetworkStates
 import com.daohang.trainapp.livebus.TimeStates
-import com.daohang.trainapp.receiver.GeoFenceReceiver
 import com.daohang.trainapp.services.AMapLocationServices
-import com.daohang.trainapp.services.GEOFENCE_BROADCAST_ACTION
+import com.daohang.trainapp.services.ObdService
 import com.daohang.trainapp.utils.SoundManager
 import com.daohang.trainapp.utils.WarningFlag
 import com.daohang.trainapp.utils.currentTimeWithMinutes
 import com.jeremyliao.liveeventbus.LiveEventBus
 import com.yz.lz.modulapi.JNIUtils
 import com.yz.lz.modulapi.NewJNIUtils
+import xcrash.XCrash
 import kotlin.concurrent.thread
 
 class MyApplication : Application() {
@@ -61,7 +60,11 @@ class MyApplication : Application() {
         checkNetwork = getSystemService<ConnectivityManager>() != null
         checkGps = getSystemService<LocationManager>() != null
 
+//        initCrashReport()
+
         WarningFlag.initFlagArray()
+
+        ObdService("ttyS6",57600).open()
 
         initLocation()
 
@@ -71,6 +74,26 @@ class MyApplication : Application() {
 
         initTTS()
     }
+
+    override fun attachBaseContext(base: Context?) {
+        super.attachBaseContext(base)
+
+        XCrash.init(this)
+    }
+//
+//    private fun initCrashReport(){
+//        LogReport.getInstance()
+//            .setCacheSize(30 * 1024 * 1024)
+//            .setLogDir(this, "sdcard/" + this.getString(this.applicationInfo.labelRes))
+//            .setLogSaver(CrashWriter(this))
+//            .init(this)
+//    }
+
+//    private fun initEmailReporter() {
+//        val email = EmailReporter(this)
+//        email.setReceiver("zjz6220659@163.com")
+//        email.setSender()
+//    }
 
     private fun initLocation(){
 //        val intentFilter = IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION)

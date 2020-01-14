@@ -74,15 +74,13 @@ public class ParameterItem extends LinearLayout {
 
         setLocked(locked);
 
-        view.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        view.setOnClickListener(v -> {
+            if (mListener != null)
                 mListener.onClick(v);
-            }
         });
     }
 
-    public void setOnClick(OnClickListener listener){
+    public void setOnClick(OnClickListener listener) {
         if (listener != null)
             mListener = listener;
     }

@@ -13,6 +13,22 @@ object DaoHelper {
 
     private fun execute(command: () -> Unit) = executor.execute(command)
 
+    /**
+     * 清空数据库
+     */
+    fun deleteAll() {
+        TrainPreference.delete()
+        Message.delete()
+        Student.delete()
+        Coach.delete()
+        Preference.deletePreference()
+        Location.delete()
+        Record.delete()
+        Register.delete()
+        Photo.delete()
+        History.delete()
+    }
+
     object TrainPreference{
 
         fun insert(model: TrainPreferenceModel) = execute { database.trainPreferenceDao().insertTrainPreference(model) }
@@ -21,7 +37,7 @@ object DaoHelper {
 
         fun getTrainPreference() = database.trainPreferenceDao().getTrainPreference()
 
-        fun delete() = database.trainPreferenceDao().deleteTrainPreference()
+        fun delete() = execute { database.trainPreferenceDao().deleteTrainPreference() }
     }
 
     object Message{
@@ -50,6 +66,8 @@ object DaoHelper {
         fun delete(id: Int) = execute { database.studentStateDao().delete(id) }
 
         fun findStudentUnUploaded() = database.studentStateDao().findStudentUnUploaded()
+
+        fun delete() = execute { database.studentStateDao().delete() }
     }
 
     object Coach{
@@ -59,6 +77,8 @@ object DaoHelper {
         fun delete(id: Int) = execute { database.coachStateDao().delete(id) }
 
         fun findCoachUnUploaded() = database.coachStateDao().findCoachUnUploaded()
+
+        fun delete() = execute { database.coachStateDao().delete() }
     }
 
     object Preference{
@@ -124,6 +144,8 @@ object DaoHelper {
         fun update(id: ByteArray) = execute { database.pictureInitDao().updateStatus(id) }
 
         fun getInfoById(id: ByteArray) = database.pictureInitDao().getPictureInfoById(id)
+
+        fun delete() = execute { database.pictureInitDao().delete() }
     }
 
     object History{

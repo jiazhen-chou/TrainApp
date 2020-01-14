@@ -27,6 +27,7 @@ class WifiSelectActivity : BaseActivity() {
     lateinit var adapter: WifiSelectRecyclerAdapter
     private var mWifiManager: WifiManager? = null
     lateinit var scanReceiver: WifiScanReceiver
+    private var currentConnectedSSID: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -44,7 +45,7 @@ class WifiSelectActivity : BaseActivity() {
 
         LiveEventBus.get(WIFI_SCAN_RESULT, Array<WifiScanResult>::class.java)
             .observe(this, Observer {
-                adapter.setDataList(it.toList())
+                adapter.setDataList(currentConnectedSSID, it.toList())
             })
     }
 
@@ -71,7 +72,7 @@ class WifiSelectActivity : BaseActivity() {
         lvWifiList.adapter = adapter
 
         btnRefresh.onClick {
-            adapter.setDataList(listOf())
+            adapter.setDataList(currentConnectedSSID, listOf())
             startScan()
         }
 
@@ -84,7 +85,11 @@ class WifiSelectActivity : BaseActivity() {
         getSystemService<ConnectivityManager>()?.let {
             if (!it.getNetworkInfo(ConnectivityManager.TYPE_WIFI).isConnectedOrConnecting)
                 mWifiManager?.isWifiEnabled = true
-           mWifiManager?.startScan()
+            mWifiManager?.startScan()
+            val ssid = mWifiManager?.connectionInfo?.ssid
+            ssid?.run {
+                currentConnectedSSID = ssid.substring(1 until length - 1)
+            }
         }
     }
 

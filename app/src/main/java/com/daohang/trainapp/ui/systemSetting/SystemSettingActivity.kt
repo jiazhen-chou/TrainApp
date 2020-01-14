@@ -33,7 +33,6 @@ class SystemSettingActivity : BaseActivity(){
                 etDomain.setText(it[0].webSocketDomain)
                 etPort.setText("${it[0].webSocketPort}")
             }
-
         })
     }
 }

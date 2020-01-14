@@ -151,7 +151,7 @@ fun recordGnnsAddition(): ByteArray {
         data.addAll(gnnsMessage().toList())
         //车辆里程表读数
         data.addAll(byteArrayOf(0x01.toByte(), 4.toByte()).toList())
-        data.addAll((obd_miles * 10).toByteArray4().toList())
+        data.addAll((obd_miles * 10).toInt().toByteArray4().toList())
         //发动机转速
         data.addAll(byteArrayOf(0x04.toByte(), 2.toByte()).toList())
         data.addAll(rotate_speed.toByteArray2().toList())
@@ -169,10 +169,10 @@ fun locationAdditional(): ByteArray {
         val data = mutableListOf<Byte>()
         //车辆里程表读数
         data.addAll(byteArrayOf(0x01.toByte(), 4.toByte()).toList())
-        data.addAll((obd_miles * 10).toByteArray4().toList())
+        data.addAll((obd_miles * 10).toInt().toByteArray4().toList())
         //车辆油表读数
         data.addAll(byteArrayOf(0x02.toByte(), 2.toByte()).toList())
-        data.addAll((obd_fuel * 10).toByteArray2().toList())
+        data.addAll((obd_fuel * 10).toInt().toByteArray2().toList())
         //海拔高度
         data.addAll(byteArrayOf(0x03.toByte(), 2.toByte()).toList())
         data.addAll(altitude.toByteArray2().toList())

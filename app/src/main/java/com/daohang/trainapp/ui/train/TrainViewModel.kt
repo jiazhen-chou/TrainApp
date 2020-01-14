@@ -203,6 +203,9 @@ class TrainViewModel(application: Application) : BaseViewModel(application) {
         Timer().schedule(checkCardTask, 0, 500)
     }
 
+    /**
+     *
+     */
     fun stopCheckCard() = checkCardTask?.cancel()
 
     /**
@@ -332,7 +335,6 @@ class TrainViewModel(application: Application) : BaseViewModel(application) {
                         polygons.clear()
 
                     forEach {
-                        //                        createGeoFence(separatePolygonString(it.polygon), it.subject.toString())
                         polygons[it.subject] = separatePolygonString(it.polygon)
                     }
                 }

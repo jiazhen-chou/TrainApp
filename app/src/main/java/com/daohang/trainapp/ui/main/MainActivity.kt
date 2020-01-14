@@ -52,7 +52,7 @@ class MainActivity : BaseActivity() {
 
         super.onCreate(savedInstanceState)
 
-        viewModel = ViewModelProviders.of(this)[MainViewModel::class.java]
+//        viewModel = ViewModelProviders.of(this)[MainViewModel::class.java]
 
         progressBar = ProgressDialog(this)
         progressBar.max = 100
@@ -129,8 +129,7 @@ class MainActivity : BaseActivity() {
                     tvTitle.text = projectName
                     tvClientId.text = "SIM卡: ${vehiclePreference.clientId}"
 
-//                    viewModel.initProjectApi(apiDomain, apiPort)
-                    viewModel.initProjectApi("192.168.2.41", 8080)
+                    viewModel.initProjectApi(apiDomain, apiPort)
 
                     viewModel.code = code
                     if (!viewModel.isDownloading)
@@ -175,8 +174,6 @@ class MainActivity : BaseActivity() {
                 startActivity<TrainActivity>("className" to it[0].className)
             }
         })
-
-        viewModel.connectSocket()
 
         viewModel.getTrainParameter()
     }

@@ -8,7 +8,6 @@ import com.daohang.trainapp.db.models.VersionInfo
 import com.daohang.trainapp.network.ApiFactory
 import com.daohang.trainapp.network.api.ProjectApi
 import com.daohang.trainapp.network.repositories.CommonRepository
-import com.daohang.trainapp.services.NewSocketService
 import com.daohang.trainapp.ui.BaseViewModel
 import kotlinx.coroutines.launch
 import okhttp3.Request
@@ -36,8 +35,6 @@ class MainViewModel(application: Application) : BaseViewModel(application) {
     fun getPreferenceModel() = DaoHelper.Preference.getPreferenceLiveData()
 
     val preference = MutableLiveData<PreferenceModel>()
-
-    fun connectSocket() = NewSocketService().start()
 
     fun getCertification() = DaoHelper.Register.getRegisterInfo()
 
@@ -85,6 +82,7 @@ class MainViewModel(application: Application) : BaseViewModel(application) {
         ApiFactory.projectApi = ApiFactory.projectRetrofit(domain, port).create(
             ProjectApi::class.java
         )
+        println("人脸识别接口地址：$domain:$port")
         this.domain = domain
         this.port = port
     }
@@ -97,7 +95,7 @@ class MainViewModel(application: Application) : BaseViewModel(application) {
             ApiFactory.projectApi?.run {
                 commonRepository = CommonRepository(this)
                 scope.launch {
-                    newVersionInfo.postValue(commonRepository.getNewVersion("wnjp"))
+                    newVersionInfo.postValue(commonRepository.getNewVersion(code))
                 }
             }
     }
@@ -113,7 +111,7 @@ class MainViewModel(application: Application) : BaseViewModel(application) {
         if (!file.exists())
             file.mkdirs()
 
-        code = "wnjp"
+//        code = "wnjp"
         val request = Request.Builder()
             .url(url)
             .build()

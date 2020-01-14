@@ -14,22 +14,34 @@ import com.daohang.trainapp.utils.listen
 import com.daohang.trainapp.utils.odd
 import kotlinx.android.synthetic.main.item_wifi_list.view.*
 import org.jetbrains.anko.backgroundColor
+import org.jetbrains.anko.collections.forEachByIndex
+import org.jetbrains.anko.toast
 
 class WifiSelectRecyclerAdapter(val context: Context, val dataList: MutableList<WifiScanResult>) : RecyclerView.Adapter<WifiSelectRecyclerAdapter.ViewHolder>() {
 
     var selectedItem: Int = 0
+    var connectedIndex = -1
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val viewHolder = ViewHolder(LayoutInflater.from(context).inflate(R.layout.item_wifi_list, parent, false))
         return viewHolder.listen { position, _ ->
-            selectedItem = position
-            InputDialog(context,dataList[position].ssid).show()
+            if (connectedIndex != position) {
+                selectedItem = position
+                InputDialog(context, dataList[position].ssid).show()
+            } else {
+                context.toast("您已连接到此wifi")
+            }
         }
     }
 
     override fun getItemCount(): Int = dataList.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        if (position == connectedIndex)
+            holder.isConnected.visibility = View.VISIBLE
+        else
+            holder.isConnected.visibility = View.INVISIBLE
+
         if (position.odd()){
             holder.rootView.backgroundColor = context.color(R.color.selfcheck_white_bg)
         } else{
@@ -45,9 +57,28 @@ class WifiSelectRecyclerAdapter(val context: Context, val dataList: MutableList<
         holder.imageView.setImageResource(level)
     }
 
-    fun setDataList(list: List<WifiScanResult>){
+    fun setDataList(currentSSID: String?, list: List<WifiScanResult>){
         dataList.clear()
         dataList.addAll(list)
+
+        if (currentSSID.isNullOrEmpty())
+            connectedIndex = -1
+        else {
+            dataList.forEachIndexed { index, wifiScanResult ->
+                if (wifiScanResult.ssid == currentSSID) {
+                    connectedIndex = index
+                    return@forEachIndexed
+                }
+            }
+        }
+
+        if (connectedIndex != -1){
+            val temp = dataList[connectedIndex]
+            dataList[connectedIndex] = dataList[0]
+            dataList[0] = temp
+            connectedIndex = 0
+        }
+
         notifyDataSetChanged()
     }
 
@@ -56,5 +87,6 @@ class WifiSelectRecyclerAdapter(val context: Context, val dataList: MutableList<
         val rootView = view.viewRoot
         val textView = view.tvWifi
         val imageView = view.ivWifiSignal
+        val isConnected = view.isConnected
     }
 }

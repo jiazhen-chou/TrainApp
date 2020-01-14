@@ -50,9 +50,6 @@ android {
         sourceCompatibility 1.8
         targetCompatibility 1.8
     }
-//    useLibrary 'android.test.runner'
-//    useLibrary 'android.test.base'
-//    useLibrary 'android.test.mock'
 }
 
 dependencies {
@@ -81,14 +78,18 @@ dependencies {
 
     implementation 'com.jeremyliao:live-event-bus:1.5.5'
 
+//    implementation 'com.github.wenmingvs:LogReport:1.0.3'
+    //崩溃日志上报
+    implementation 'com.iqiyi.xcrash:xcrash-android-lib:2.4.9'
+
     implementation "org.jetbrains.anko:anko:$anko_version"
     //车牌号输入控件
     implementation "wang.relish.widget:vehicleedittext:1.0.0"
 
-    implementation "com.github.nkzawa:socket.io-client:$socket_io_version"
-
     implementation "com.amap.api:location:4.8.0"
     implementation 'com.amap.api:3dmap:7.1.0'
+
+    implementation 'com.github.kongqw:AndroidSerialPort:1.0.1'
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.2.0'

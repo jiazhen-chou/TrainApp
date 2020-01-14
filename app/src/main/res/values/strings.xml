@@ -49,4 +49,6 @@
     <string name="text_km_h">km / h</string>
     <string name="text_quit">退出</string>
     <string name="cancel">取消</string>
+
+    <string name="error">系统崩溃</string>
 </resources>

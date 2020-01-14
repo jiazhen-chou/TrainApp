@@ -9,7 +9,6 @@ import com.daohang.trainapp.R
 import com.daohang.trainapp.ui.BaseActivity
 import com.daohang.trainapp.ui.parameterSetting.ParameterSettingActivity
 import com.daohang.trainapp.utils.TOTP
-import com.daohang.trainapp.utils.drawable
 import kotlinx.android.synthetic.main.activity_insert_password.*
 import org.jetbrains.anko.imageResource
 import org.jetbrains.anko.sdk27.coroutines.onClick
